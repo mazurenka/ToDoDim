@@ -7,7 +7,7 @@ import {Menu} from '@material-ui/icons';
 import {
     addTodolistAC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC, fetchTodolistsThunk,
+    changeTodolistTitleAC, fetchTodolistsTC,
     FilterValuesType,
     removeTodolistAC,
     TodolistDomainType
@@ -17,7 +17,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
 import {TaskStatuses, TaskType} from './api/todolists-api'
 import {v1} from "uuid";
-
 
 export type TasksStateType = {
     [key: string]: Array<TaskType>
@@ -32,8 +31,8 @@ function AppWithRedux() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchTodolistsThunk)
-    },[])
+        dispatch(fetchTodolistsTC())
+    }, [])
 
     const removeTask = useCallback(function (id: string, todolistId: string) {
         const action = removeTaskAC(id, todolistId);
