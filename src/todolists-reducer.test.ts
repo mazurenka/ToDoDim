@@ -1,5 +1,4 @@
-import {setTodolistsAC, TodolistDomainType, todolistsReducer} from "./todolists-reducer";
-import {v1} from "uuid";
+import {setTodolistsAC, TodolistDomainType, todolistsReducer} from "./features/TodolistsList/todolists-reducer";
 
 let todolistId1: string
 let todolistId2: string

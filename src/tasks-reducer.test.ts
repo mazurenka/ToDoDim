@@ -1,8 +1,6 @@
-
-import {TaskPriorities, TaskStatuses} from "../api/todolists-api";
-import {setTodolistsAC} from "./todolists-reducer";
-import {setTasksAC, tasksReducer} from "./tasks-reducer";
-import {TasksStateType} from "../app/AppWithRedux";
+import {setTasksAC, tasksReducer, TasksStateType} from "./features/TodolistsList/tasks-reducer";
+import {TaskPriorities, TaskStatuses} from "./api/todolists-api";
+import {setTodolistsAC} from "./features/TodolistsList/todolists-reducer";
 
 let startState: TasksStateType = {};
 beforeEach(() => {
