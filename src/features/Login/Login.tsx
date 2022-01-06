@@ -1,8 +1,12 @@
 import React from 'react'
 import {Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Button, Grid} from '@material-ui/core'
 import {useFormik} from "formik";
+import {useDispatch} from "react-redux";
+import {loginTC} from "./login-reducer";
 
 export const Login = () => {
+
+    const dispatch = useDispatch()
 
     const formik = useFormik({
         validate: (values) => {
@@ -23,7 +27,7 @@ export const Login = () => {
             rememberMe: false
         },
         onSubmit: values => {
-            alert(JSON.stringify(values))
+            dispatch(loginTC(values))
         },
     })
 
