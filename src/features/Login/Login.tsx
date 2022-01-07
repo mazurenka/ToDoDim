@@ -1,12 +1,23 @@
 import React from 'react'
 import {Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Button, Grid} from '@material-ui/core'
 import {useFormik} from "formik";
-import {useDispatch} from "react-redux";
-import {loginTC} from "./login-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {loginTC} from "./auth-reducer";
+import {AppRootStateType} from "../../app/store";
+import {Router} from "@material-ui/icons";
 
 export const Login = () => {
-
     const dispatch = useDispatch()
+
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+
+    if (isLoggedIn) {
+        return (
+            <Router>
+                <Router path={'/'}/>
+            </Router>
+        )
+    }
 
     const formik = useFormik({
         validate: (values) => {
