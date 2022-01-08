@@ -1,10 +1,10 @@
 import React from 'react'
 import {Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Button, Grid} from '@material-ui/core'
-import {useFormik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {loginTC} from "./auth-reducer";
 import {AppRootStateType} from "../../app/store";
 import {Router} from "@material-ui/icons";
+import { useFormik } from 'formik';
 
 export const Login = () => {
     const dispatch = useDispatch()

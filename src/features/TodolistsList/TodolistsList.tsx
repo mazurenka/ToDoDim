@@ -15,9 +15,7 @@ import {TaskStatuses} from '../../api/todolists-api'
 import {Grid, Paper} from '@material-ui/core'
 import {AddItemForm} from '../../components/AddItemForm/AddItemForm'
 import {Todolist} from './Todolist/Todolist'
-import {Redirect, Route} from 'react-router-dom';
-
-
+import {Navigate, Route} from 'react-router-dom';
 
 type PropsType = {
     demo?: boolean
@@ -79,10 +77,7 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     }, [dispatch])
 
     if (!isLoggedIn) {
-        return <Redirect>
-            <Route path='/Login' />
-            </Redirect>
-
+        return <Navigate to='/Login'/>
     }
 
     return <>
