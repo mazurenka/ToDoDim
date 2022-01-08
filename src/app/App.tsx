@@ -9,6 +9,7 @@ import {AppRootStateType} from './store'
 import {RequestStatusType} from './app-reducer'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Login} from "../features/Login/Login";
+import {CircularProgress} from "@mui/material";
 
 type PropsType = {
     demo?: boolean
@@ -16,6 +17,15 @@ type PropsType = {
 
 function App({demo = false}: PropsType) {
     const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
+    const isInitialized = useSelector<AppRootStateType, boolean>((state) => state.app.isInitialized)
+
+    if (!isInitialized) {
+        return <div
+            style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+            <CircularProgress/>
+        </div>
+    }
+
     return (
         <BrowserRouter>
             <div className="App">
