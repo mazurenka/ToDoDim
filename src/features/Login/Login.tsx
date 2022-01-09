@@ -3,15 +3,13 @@ import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, G
 import {useDispatch, useSelector} from "react-redux";
 import {loginTC} from "./auth-reducer";
 import {AppRootStateType} from "../../app/store";
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Navigate,} from "react-router-dom";
 import {useFormik} from 'formik';
 
 export const Login = () => {
     const dispatch = useDispatch()
 
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
-
-
 
     const formik = useFormik({
         validate: (values) => {
