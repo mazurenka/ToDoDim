@@ -13,32 +13,19 @@ const slice = createSlice({
     name: "app",
     initialState: initialState,
     reducers: {
-        setAppErrorAC: (state, action: PayloadAction<{error: string | null}>) => {
-
+        setAppStatusAC: (state, action: PayloadAction<{ status: RequestStatusType }>) => {
+            state.status = action.payload.status
         },
-        setAppStatusAC: (state, action: PayloadAction<{status: RequestStatusType}>) => {
-
+        setAppErrorAC: (state, action: PayloadAction<{ error: string | null }>) => {
+            state.error = action.payload.error
         },
-        setAppInitializedAC: (state, action: PayloadAction<{value: boolean}>) => {
-
-        }
+        setAppInitializedAC: (state, action: PayloadAction<{ isInitialized: boolean }>) => {
+            state.isInitialized = action.payload.isInitialized
+        },
     }
 })
 
 export const appReducer = slice.reducer
-
-/*export const appReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
-    switch (action.type) {
-        case 'APP/SET-STATUS':
-            return {...state, status: action.payload.status}
-        case 'APP/SET-ERROR':
-            return {...state, error: action.payload.error}
-        case 'APP/SET-IS-INITIALIZED' :
-            return {...state, isInitialized: action.payload.value}
-        default:
-            return {...state}
-    }
-}*/
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type InitialStateType = {
@@ -58,14 +45,10 @@ export const initializedAppTC = () => (dispatch: Dispatch) => {
         } else {
 
         }
-        dispatch(setAppInitializedAC({value:true}))
+        dispatch(setAppInitializedAC({isInitialized: true}))
     })
 }
 
 export type SetAppErrorActionType = ReturnType<typeof setAppErrorAC>
 export type SetAppStatusActionType = ReturnType<typeof setAppStatusAC>
 
-type ActionsType =
-    | SetAppErrorActionType
-    | SetAppStatusActionType
-    | ReturnType<typeof setAppInitializedAC>
