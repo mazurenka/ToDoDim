@@ -1,4 +1,10 @@
-import {AddTodolistActionType, RemoveTodolistActionType, SetTodolistsActionType} from './todolists-reducer'
+import {
+    addTodolistAC,
+    AddTodolistActionType,
+    removeTodolistAC,
+    RemoveTodolistActionType, setTodolistsAC,
+    SetTodolistsActionType
+} from './todolists-reducer'
 import {TaskPriorities, TaskStatuses, TaskType, todolistsAPI, UpdateTaskModelType} from '../../api/todolists-api'
 import {Dispatch} from 'redux'
 import {AppRootStateType} from '../../app/store'
@@ -7,11 +13,11 @@ import {handleServerAppError, handleServerNetworkError} from '../../utils/error-
 
 const initialState: TasksStateType = {}
 
-export const tasksReducer = (state: TasksStateType = initialState, action: ActionsType): TasksStateType => {
+export const tasksReducer = (state: TasksStateType = initialState, action: any): TasksStateType => {
     switch (action.type) {
         case 'REMOVE-TASK':
             return {...state, [action.todolistId]: state[action.todolistId].filter(t => t.id != action.taskId)}
-        case 'ADD-TASK':
+        case addTodolistAC.name:
             return {...state, [action.task.todoListId]: [action.task, ...state[action.task.todoListId]]}
         case 'UPDATE-TASK':
             return {
@@ -19,15 +25,15 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
                 [action.todolistId]: state[action.todolistId]
                     .map(t => t.id === action.taskId ? {...t, ...action.model} : t)
             }
-        case 'ADD-TODOLIST':
+        case addTodolistAC.name:
             return {...state, [action.todolist.id]: []}
-        case 'REMOVE-TODOLIST':
+        case removeTodolistAC.name:
             const copyState = {...state}
             delete copyState[action.id]
             return copyState
-        case 'SET-TODOLISTS': {
+        case setTodolistsAC.name: {
             const copyState = {...state}
-            action.todolists.forEach(tl => {
+            action.todolists.forEach((tl: any) => {
                 copyState[tl.id] = []
             })
             return copyState
