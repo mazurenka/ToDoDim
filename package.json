@@ -33,7 +33,7 @@
     "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
-  "homepage":  "https://mazurenka.github.io/ToDoDim",
+  "homepage": "https://mazurenka.github.io/ToDoDim",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
