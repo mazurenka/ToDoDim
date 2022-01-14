@@ -55,8 +55,10 @@ function App({demo = false}: PropsType) {
                 </AppBar>
                 <Container fixed>
                     <Routes>
-                        <Route path={'/TodolistsList'} element={<TodolistsList demo={demo}/>}/>
+
                         <Route path={'/Login'} element={<Login/>}/>
+                        <Route path={'/TodolistsList'} element={<TodolistsList demo={demo}/>}/>
+
                     </Routes>
                 </Container>
             </div>
